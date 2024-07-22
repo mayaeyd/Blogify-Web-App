@@ -1,0 +1,85 @@
+<%- include("partials/header.ejs") %>
+
+<% 
+    function escapeQuotes(str) {
+        return str.replace(/'/g, "\\'");
+    }
+%>
+
+<h1 class="subtitle">Home Page</h1>
+
+<div class="secondary-btn-container">
+    <button class="secondary-btn" id="blogButton">Create a blog</button>
+</div>
+
+<div class="posts-container">
+    <% posts.forEach(post => { %>
+        <div class="post-card" data-id="<%= post.id %>">
+            <h2><%= post.title %></h2>
+            <p><%= post.content %></p>
+            <i class="bi bi-trash3-fill" id="trashButton" onclick="deletePost('<%= post.id %>')"></i>
+            <i class="bi bi-pencil-fill" id="penButton" onclick="showEditForm('<%= post.id %>', '<%= escapeQuotes(post.title) %>', '<%= escapeQuotes(post.content) %>')"></i>
+        </div>
+   <% }); %>
+</div>
+<div id="editFormContainer" style="display:none;">
+    <form id="editForm" class="form-container">
+        <input type="text" id="editTitle" name="title" maxlength="50" required>
+        <textarea id="editContent" name="main" required></textarea>
+        <input type="submit" value="Update" class="secondary-btn">
+    </form>
+</div>
+
+<script>
+    document.getElementById('blogButton').addEventListener('click', function() {
+            window.location.href = '/blog';
+        });
+
+    async function deletePost(postId){
+        // fetch function sends a DELETE request to the server
+        const response =await fetch(`/post/${postId}`, { // this url, /post/${postId}, is the endpoint to which the request is sent
+            method: 'DELETE'
+        });
+        // if the response from the server indicates success
+        if (response.ok) {
+            //if yes, find post card in the DOM with this id
+            const postCard = document.querySelector(`[data-id='${postId}']`);
+            postCard.remove(); //then remove it
+        } else {
+            console.error('Failed to delete post');
+        }
+    }
+
+    function showEditForm(postId, title, content) {
+        document.getElementById('editFormContainer').style.display = 'block';
+        document.getElementById('editTitle').value = title;  //set the value as the current title being edited
+        document.getElementById('editContent').value = content;  //set the value as the current content being edited
+        
+        const form = document.getElementById('editForm');
+        form.onsubmit = async function(event) {  //on form submit, set up an event handler
+            event.preventDefault();
+            await editPost(postId); //when it is submitted, editPost() is called
+        };
+    }
+
+    async function editPost(postId) {
+        const form = document.getElementById('editForm');
+        const formData = new FormData(form); //collect all input field values in the form
+
+        const response = await fetch(`/post/${postId}`, {
+            method: 'PUT',
+            body: new URLSearchParams(formData)
+        });
+
+        if (response.ok) {
+            document.querySelector(`[data-id='${postId}'] h2`).innerText = formData.get('title');
+            document.querySelector(`[data-id='${postId}'] p`).innerText = formData.get('main');
+            document.getElementById('editFormContainer').style.display = 'none';
+        } else {
+            console.error('Failed to update post');
+        }
+    }
+</script>
+
+
+<%- include("partials/footer.ejs") %>

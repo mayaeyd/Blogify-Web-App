@@ -1,0 +1,13 @@
+<%- include("partials/header.ejs") %>
+
+    <div class="btn-container">
+        <button class="primary-btn" id="blogButton">Create a blog</button>
+    </div>
+
+    <script>
+        document.getElementById('blogButton').addEventListener('click', function() {
+            window.location.href = '/blog';
+        });
+    </script>
+<%- include("partials/footer.ejs") %>
+

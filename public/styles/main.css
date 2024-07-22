@@ -1,0 +1,176 @@
+.logo, li, .subtitle, .post-card h2{
+    font-family: "Playwrite DK Uloopet", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.post-card p, .primary-btn, .secondary-btn, .subcontent{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 75px; 
+}
+
+
+.logo{
+    font-size: 2.7rem;
+    color: #333333;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #5a5757;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    border:1.5px solid white;
+    border-radius: 3px;
+}
+  
+li {
+    float: left;
+    font-size: 1rem;
+}
+  
+li a {
+    display: block;
+    color:#7b97a2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+li a:hover {
+    background-color: #111;
+}
+  
+.active {
+    color: #5a5757;
+    background-color:#7b97a2;
+}
+
+.subtitle{
+    font-weight: 300;
+}
+
+.btn-container{  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -100px;
+}  
+
+.primary-btn{
+    background-color: #7b97a2;
+    height: 75px;
+    width: 200px;
+    border-radius: 5px;
+    border:3px solid white;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.primary-btn:hover{
+    transform: translateY(-5px);
+}
+
+.form-container{
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.form-container input[type="text"],
+.form-container textarea,
+.form-container input[type="submit"] {
+    margin-bottom: 10px; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+.form-container textarea{
+    height: 200px;
+}
+
+.secondary-btn-container{
+    margin: 20px;
+}
+
+.secondary-btn{
+    background-color: #7b97a2;
+    border-radius: 5px;
+    border:3px solid white;
+    cursor: pointer; 
+}
+
+.posts-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.post-card{
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    transition: transform 0.3s;
+}
+
+.post-card:hover{
+    transform: translateY(-5px);
+}
+
+.post-card h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.post-card p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+}
+
+.bi-pencil-fill, .bi-trash3-fill{
+    float: inline-end;
+    margin:10px; 
+    cursor: pointer;
+}
+
+body{
+    height: 100%;
+    flex:1;
+    background-color: #f0f0f0;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+}
+
+footer{
+    position: fixed;
+    font-size: small;
+    padding: 10px;
+    bottom: 0;
+}
